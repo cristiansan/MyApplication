@@ -35,8 +35,6 @@ public class Main2Activity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        toolbar.setNavigationIcon(android.R.drawable.ic_menu_more);
-
         // load saved navigation state if present
         if (null == savedInstanceState) {
             mNavItemId = R.id.drawer_item_1;
@@ -89,20 +87,12 @@ public class Main2Activity extends AppCompatActivity {
         FragmentTransaction ft = null;
         switch (mNavItemId) {
             case R.id.drawer_item_1:
-//                getSupportFragmentManager().beginTransaction().remove(mFixtureFragment).commit();
-//                getSupportFragmentManager().beginTransaction().addToBackStack(null).commit();
-
                 ft = getSupportFragmentManager().beginTransaction();
                 ft.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 ft.replace(R.id.content, mFirstFragment, "fragment");
                 ft.commit();
                 break;
             case R.id.drawer_item_2:
-//                getSupportFragmentManager().beginTransaction().remove(mFirstFragment).commit();
-//                getSupportFragmentManager().beginTransaction().setCustomAnimations(
-//                        R.anim.card_flip_right_in, R.anim.card_flip_right_out,
-//                        R.anim.card_flip_left_in, R.anim.card_flip_left_out).replace(R.id.content, mFixtureFragment).addToBackStack(null).commit();
-
                 ft = getSupportFragmentManager().beginTransaction();
                 ft.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 ft.replace(R.id.content, mFixtureFragment, "fragment");
