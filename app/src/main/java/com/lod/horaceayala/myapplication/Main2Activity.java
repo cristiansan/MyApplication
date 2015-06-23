@@ -1,13 +1,20 @@
 package com.lod.horaceayala.myapplication;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Scene;
+import android.transition.TransitionManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 
 public class Main2Activity extends AppCompatActivity {
 
@@ -56,37 +63,50 @@ public class Main2Activity extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
 
 
-//        // listen for navigation events
-//        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation);
-//        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(final MenuItem menuItem) {
-//                // allow some time after closing the drawer before performing real navigation
-//                // so the user can see what is happening
-//                mDrawerLayout.closeDrawer(GravityCompat.START);
-//                Handler mDrawerActionHandler = new Handler();
-//                mDrawerActionHandler.postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        navigate(menuItem.getItemId());
-//                    }
-//                }, DRAWER_CLOSE_DELAY_MS);
-//                return true;
-//            }
-//        });
+        // listen for navigation events
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(final MenuItem menuItem) {
+                // allow some time after closing the drawer before performing real navigation
+                // so the user can see what is happening
+                mDrawerLayout.closeDrawer(GravityCompat.START);
+                Handler mDrawerActionHandler = new Handler();
+                mDrawerActionHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        navigate(menuItem.getItemId());
+                    }
+                }, DRAWER_CLOSE_DELAY_MS);
+                return true;
+            }
+        });
 
         navigate(mNavItemId);
     }
 
     private void navigate(int mNavItemId) {
+        FragmentTransaction ft = null;
         switch (mNavItemId) {
             case R.id.drawer_item_1:
-                getSupportFragmentManager().beginTransaction().remove(mFixtureFragment).commit();
-                getSupportFragmentManager().beginTransaction().add(R.id.content, mFirstFragment).addToBackStack(null).commit();
+//                getSupportFragmentManager().beginTransaction().remove(mFixtureFragment).commit();
+//                getSupportFragmentManager().beginTransaction().addToBackStack(null).commit();
+
+                ft = getSupportFragmentManager().beginTransaction();
+                ft.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                ft.replace(R.id.content, mFirstFragment, "fragment");
+                ft.commit();
                 break;
             case R.id.drawer_item_2:
-                getSupportFragmentManager().beginTransaction().remove(mFirstFragment).commit();
-                getSupportFragmentManager().beginTransaction().add(R.id.content, mFixtureFragment).addToBackStack(null).commit();
+//                getSupportFragmentManager().beginTransaction().remove(mFirstFragment).commit();
+//                getSupportFragmentManager().beginTransaction().setCustomAnimations(
+//                        R.anim.card_flip_right_in, R.anim.card_flip_right_out,
+//                        R.anim.card_flip_left_in, R.anim.card_flip_left_out).replace(R.id.content, mFixtureFragment).addToBackStack(null).commit();
+
+                ft = getSupportFragmentManager().beginTransaction();
+                ft.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                ft.replace(R.id.content, mFixtureFragment, "fragment");
+                ft.commit();
                 break;
             default:
                 // ignore
