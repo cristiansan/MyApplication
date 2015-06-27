@@ -21,7 +21,6 @@ import java.util.List;
  */
 public class MainFragment extends Fragment {
 
-
     private View rootView;
 
     public MainFragment() {
@@ -61,11 +60,16 @@ public class MainFragment extends Fragment {
         super.onDestroyView();
 
         ViewPager mViewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
-        TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tablayout);
+//        TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tablayout);
 //        tabLayout.removeAllTabs();
 //        viewPager.removeAllViews();
 
-        ((ViewPagerAdapter) mViewPager.getAdapter()).removeAll();
+        try {
+            ((ViewPagerAdapter) mViewPager.getAdapter()).removeAll();
+        } catch (Exception ex)
+        {
+
+        }
     }
 
     static class ViewPagerAdapter extends FragmentPagerAdapter {

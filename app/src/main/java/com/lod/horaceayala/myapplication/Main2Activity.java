@@ -1,7 +1,9 @@
 package com.lod.horaceayala.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +17,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 public class Main2Activity extends AppCompatActivity {
 
@@ -60,7 +66,6 @@ public class Main2Activity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         actionBarDrawerToggle.syncState();
 
-
         // listen for navigation events
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -103,6 +108,45 @@ public class Main2Activity extends AppCompatActivity {
                 break;
         }
     }
+
+
+
+    public void btnSceneTest(View v) {
+        ViewGroup rootContainer = (ViewGroup) findViewById(R.id.drawer_layout);
+
+        final Scene scene1 = Scene.getSceneForLayout(rootContainer, R.layout.activity_main2, this);
+        final Scene scene2 = Scene.getSceneForLayout(rootContainer, R.layout.open_note, this);
+        TransitionManager.go(scene2);
+
+        CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        collapsingToolbar.setTitle("Title");
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TransitionManager.go(scene1);
+            }
+        });
+
+
+
+        WebView webview = (WebView)findViewById(R.id.article);
+        webview.getSettings().setJavaScriptEnabled(true);
+        webview.setWebChromeClient(new WebChromeClient());
+        webview.getSettings().setPluginState(WebSettings.PluginState.ON);
+        webview.getSettings().setPluginState(WebSettings.PluginState.ON_DEMAND);
+        webview.setWebViewClient(new WebViewClient());
+        webview.getSettings().setUseWideViewPort(true);
+        webview.getSettings().setDomStorageEnabled(true);
+        webview.getSettings().setLoadWithOverviewMode(true);
+//        webview.loadData("<h1 style=\"color:blue\">This is a Blue Heading</h1><iframe src=\"https://vine.co/v/bnrtW52x1uJ/card?mute=1\"\n" +
+//                "width=\"100%\" height=\"100%\" frameborder=\"0\"></iframe><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1><h1 style=\"color:blue\">This is a Blue Heading</h1>", "text/html", "UTF-8");
+        webview.loadUrl("http://www.90min.com/es/hybrid/posts/2278928-escandalo-y-corrupcion-los-audios-que-involucran-a-grondona-en-el-arreglo-de-partidos?app=1&ref=Android&app_name=90min&utm_source=app&utm_medium=feed");
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
