@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        MainActivity.this.setTitle("");
+
         rootContainer = (ViewGroup) findViewById(R.id.rootContainer);
 
         scene1 = Scene.getSceneForLayout(rootContainer, R.layout.activity_main2, this);
@@ -60,9 +62,8 @@ public class MainActivity extends AppCompatActivity {
         Typeface myTypeface = Typeface.createFromAsset(getAssets(), "fonts/freshman.ttf");
 
         Toolbar toolbarTop = (Toolbar) findViewById(R.id.toolbar);
-        toolbarTop.setTitle("HOLA");
-        MainActivity.this.setTitle("");
         TextView mTitle = (TextView) toolbarTop.findViewById(R.id.toolbar_title);
+        mTitle.setTypeface(myTypeface);
     }
 
     private void Main(Bundle savedInstanceState) {
