@@ -3,9 +3,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#F50057</item>
-        <item name="colorPrimaryDark">#C51162</item>
-        <item name="colorAccent">#FF80AB</item>
+        <item name="colorPrimary">#0cc659</item>
+        <item name="colorPrimaryDark">#119448</item>
+        <item name="colorAccent">#19e8ba</item>
         <item name="windowActionBar">false</item>
         <item name="windowActionBarOverlay">true</item>
         <item name="windowNoTitle">true</item>

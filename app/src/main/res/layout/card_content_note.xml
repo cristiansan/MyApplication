@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textView2"
@@ -43,19 +45,22 @@
         android:id="@+id/xxx"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentEnd="false"
+        android:layout_centerInParent="true"
         android:visibility="gone">
 
         <com.lod.horaceayala.myapplication.MyView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left" />
+            android:layout_height="wrap_content" />
     </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/tvTitle"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/xManu">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -74,14 +79,15 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="?android:attr/selectableItemBackground"
+                android:id="@+id/xImg">
 
                 <ImageView
-                    android:id="@+id/imageView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:src="@drawable/pelota_on" />
+                    android:src="@drawable/manito" />
             </LinearLayout>
 
             <FrameLayout
@@ -95,14 +101,15 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="?android:attr/selectableItemBackground">
 
                 <ImageView
                     android:id="@+id/imageView10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:src="@drawable/inicio_on" />
+                    android:src="@drawable/globitos" />
             </LinearLayout>
 
             <FrameLayout
@@ -116,14 +123,15 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="?android:attr/selectableItemBackground"
+                android:id="@+id/xShare">
 
                 <ImageView
-                    android:id="@+id/xImg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:src="@drawable/estadisticas_on" />
+                    android:src="@drawable/social" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

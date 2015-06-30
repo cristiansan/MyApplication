@@ -66,6 +66,11 @@ public class MainActivity extends AppCompatActivity {
         mTitle.setTypeface(myTypeface);
     }
 
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+    }
+
     private void Main(Bundle savedInstanceState) {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -73,10 +78,10 @@ public class MainActivity extends AppCompatActivity {
 
         // load saved navigation state if present
         if (null == savedInstanceState) {
-            mNavItemId = R.id.drawer_item_1;
+            mNavItemId = R.id.home;
         } else {
             mNavItemId = savedInstanceState.getInt(NAV_ITEM_ID);
-            mNavItemId = R.id.drawer_item_1;
+            mNavItemId = R.id.home;
         }
 
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, android.R.string.copy, android.R.string.cancel) {
@@ -121,13 +126,13 @@ public class MainActivity extends AppCompatActivity {
     private void navigate(int mNavItemId) {
         FragmentTransaction ft = null;
         switch (mNavItemId) {
-            case R.id.drawer_item_1:
+            case R.id.home:
                 ft = getSupportFragmentManager().beginTransaction();
                 ft.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 ft.replace(R.id.content, mFirstFragment, "fragment");
                 ft.commit();
                 break;
-            case R.id.drawer_item_2:
+            case R.id.matchs:
                 ft = getSupportFragmentManager().beginTransaction();
                 ft.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 ft.replace(R.id.content, mFixtureFragment, "fragment");
@@ -141,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void btnSceneTest(View v) {
         TransitionManager.go(scene2);
+
 
         getSupportFragmentManager().beginTransaction().remove(mFirstFragment).commit();
 

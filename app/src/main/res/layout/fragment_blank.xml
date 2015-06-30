@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="5dp"
-    tools:context="com.lod.horaceayala.myapplication.BlankFragment">
+    tools:context="com.lod.horaceayala.myapplication.BlankFragment"
+    android:background="#68c491">
 
     <!-- TODO: Update blank fragment layout -->
 

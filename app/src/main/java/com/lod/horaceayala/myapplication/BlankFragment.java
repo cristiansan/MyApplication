@@ -3,6 +3,7 @@ package com.lod.horaceayala.myapplication;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.transition.Scene;
@@ -73,6 +74,14 @@ public class BlankFragment extends Fragment {
                 if (myView.getVisibility() == View.GONE) {
                     myView.setVisibility(View.VISIBLE);
                     ViewAnimationUtils.createCircularReveal(myView, myView.getWidth(), myView.getHeight(), 0, myView.getHeight() * 2).start();
+
+                    rootView.findViewById(R.id.popup_like).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            myView.setVisibility(View.GONE);
+                        }
+                    });
+
                 } else {
                     Animator anim = ViewAnimationUtils.createCircularReveal(myView, myView.getWidth(), myView.getHeight(), myView.getHeight() * 2, 0);
                     anim.addListener(new AnimatorListenerAdapter() {
@@ -84,8 +93,17 @@ public class BlankFragment extends Fragment {
                     });
                     anim.start();
                 }
+            }
+        });
 
-
+        rootView.findViewById(R.id.xShare).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
             }
         });
 
